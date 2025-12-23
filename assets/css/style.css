@@ -1,0 +1,11 @@
+body{
+    background-color: #f6f6f6f6;
+}
+form{
+    padding: 20px;
+    background-color: #fff;
+}
+.errorMsg{
+    color: red;
+    font-weight: bold;
+}
