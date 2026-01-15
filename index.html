@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Reçu de paiement</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f0f2f5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .receipt {
+            width: 100%;
+            max-width: 420px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            padding: 25px;
+        }
+
+        h1 {
+            text-align: center;
+            margin: 0 0 20px;
+            color: #2c3e50;
+            font-size: 22px;
+        }
+
+        .logo {
+            display: flex;
+            margin: 0 auto 15px;
+            max-width: 160px;
+            height: 60px;
+            background: white;
+            color: white;
+            align-items: center;
+            justify-content: center;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+
+        .section {
+            margin-bottom: 20px;
+        }
+
+        .row {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px dashed #ddd;
+        }
+
+        .row:last-child {
+            border-bottom: none;
+        }
+
+        .label {
+            color: #666;
+        }
+
+        .value {
+            font-weight: bold;
+            color: #333;
+        }
+
+        .amount {
+            margin: 25px 0;
+            background: #f8f9fa;
+            padding: 20px;
+            border-left: 4px solid #3498db;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .footer {
+            margin-top: 25px;
+            text-align: center;
+        }
+
+        .buttons {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+        }
+
+        button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            color: white;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .print-btn { background: #3498db; }
+        .pdf-btn { background: #2c3e50; }
+    </style>
+</head>
+
+<body>
+<div class="receipt" id="receipt">
+
+    <div class="logo"><img src="images/logo (1).webp" class="logo" alt="logo"></div>
+
+    <h1>Reçu de paiement</h1>
+    
+    <div class="section">
+        <div class="row">
+            <div class="label">Nom :</div>
+            <div class="value" id="nom">Tonety Guelahibi Ruben</div>
+        </div>
+        <div class="row">
+            <div class="label">Identifiant :</div>
+            <div class="value" id="identifiant">TONG1012040001</div>
+        </div>
+        <div class="row">
+            <div class="label">Niveau :</div>
+            <div class="value" id="niveau">Licence 2</div>
+        </div>
+        <div class="row">
+            <div class="label">Filière :</div>
+            <div class="value" id="filiere">Informatique Option Genie Lociciel</div>
+        </div>
+        <div class="row">
+            <div class="label">Date :</div>
+            <div class="value" id="date">2024-01-14 12:43:17</div>
+        </div>
+    </div>
+    
+    <div class="section">
+        <div class="row">
+            <div class="label">Montant total :</div>
+            <div class="value" id="total">750 000 FCFA</div>
+        </div>
+        <div class="row">
+            <div class="label">Montant versé :</div>
+            <div class="value" id="verse">250 000 FCFA</div>
+        </div>
+        <div class="row">
+            <div class="label">Reste à payer :</div>
+            <div class="value" id="reste">500 000 FCFA</div>
+        </div>
+    </div>
+    
+    <div class="amount">
+        <div style="color: #666; margin-bottom: 5px;">Versement effectué</div>
+        <div style="font-size: 28px; font-weight: bold; color: blue;">250 000 FCFA</div>
+    </div>
+    
+    <div class="footer">
+        <div class="buttons">
+            <button class="print-btn" onclick="window.print()">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M19 8H5c-1.66 0-3 1.34-3 3v6h4v4h12v-4h4v-6c0-1.66-1.34-3-3-3zm-3 11H8v-5h8v5zm3-7c-.55 0-1-.45-1-1s.45-1 1-1 1 .45 1 1-.45 1-1 1zm-1-9H6v4h12V3z"/>
+                </svg>
+                Imprimer
+            </button>
+            <button class="pdf-btn" id="pdfBtn">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M20 2H8c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-8.5 7.5c0 .83-.67 1.5-1.5 1.5H9v2H7.5V7H10c.83 0 1.5.67 1.5 1.5v1zm5 2c0 .83-.67 1.5-1.5 1.5h-2.5V7H15c.83 0 1.5.67 1.5 1.5v3zm4-3H19v1h1.5V11H19v2h-1.5V7h3v1.5zM9 9.5h1v-1H9v1zM4 6H2v14c0 1.1.9 2 2 2h14v-2H4V6zm10 5.5h1v-3h-1v3z"/>
+                </svg>
+                PDF
+            </button>
+        </div>
+    </div>
+</div>
+
+<script>
+// Génère un PDF en gérant les images CORS et les erreurs
+window.addEventListener('DOMContentLoaded', function() {
+    const pdfBtn = document.getElementById('pdfBtn');
+    if (!pdfBtn) return;
+
+    function waitForImages(container) {
+        const imgs = Array.from(container.querySelectorAll('img'));
+        return Promise.all(imgs.map(img => new Promise(resolve => {
+            // essayer d'activer CORS pour les images externes
+            try { img.crossOrigin = 'anonymous'; } catch (e) {}
+            if (img.complete) return resolve();
+            img.onload = img.onerror = function() { resolve(); };
+        })));
+    }
+
+    pdfBtn.addEventListener('click', async function() {
+        const element = document.getElementById('receipt');
+        if (!element) return;
+
+        // Attendre le chargement des images (pour éviter les erreurs CORS/taint)
+        try {
+            await waitForImages(element);
+        } catch (e) {
+            console.warn('Erreur lors de la préparation des images:', e);
+        }
+
+        const opt = {
+            margin: 10,
+            filename: 'recu-paiement.pdf',
+            image: { type: 'jpeg', quality: 0.98 },
+            html2canvas: {
+                scale: 2,
+                useCORS: true,
+                allowTaint: false
+            },
+            jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
+        };
+
+        try {
+            // Utiliser l'API promise pour capturer et sauvegarder
+            await html2pdf().set(opt).from(element).save();
+        } catch (err) {
+            console.error('Erreur lors de la génération du PDF :', err);
+            alert('Erreur lors du téléchargement du PDF. Ouvrez la console pour plus de détails.');
+        }
+    });
+});
+</script>
+</body>
+</html>
