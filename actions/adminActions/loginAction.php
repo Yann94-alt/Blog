@@ -16,14 +16,11 @@ if(isset($_POST['valider'])){
 
         //verifier sile pseudo et le mdpp coorespondent 
         if($user_pseudo==$default_pseudo and $user_password==$default_password){
-
             $_SESSION['auth']=true;
             header('location:AdminInter.php');
-
         }else{
             $errorMsg="votre mot de passe est incorrecte..";
         }
-
     }else{
       $errorMsg="veuilles remplir les champs...";
     }
