@@ -13,6 +13,6 @@ if(isset($_POST['valider'])){
         //redirection
         header('location:AdminInter.php');
     }else{
-        $errorMsg="veuillez remplir les champs svp ....";
+        $errorMsg="veuillez remplir les champs  ....";
     }
 }
