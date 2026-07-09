@@ -9,7 +9,6 @@
 <?php
 if (isset($errorMsg)){echo "<p class='errorMsg'>".$errorMsg."</p>";}
 ?>
-
         <div class="mb-3">
            <label  class="form-label">pseudo admin</label>
            <input type="text" class="form-control" name="pseudo" autocomplete="off">
